@@ -479,7 +479,7 @@ function init(){
   if(isStandalone())$('installBtn').classList.add('hidden');
   if('serviceWorker' in navigator){
     window.addEventListener('load',()=>{
-      navigator.serviceWorker.register('./sw.js',{scope:'./',updateViaCache:'none'}).then(reg=>reg.update()).catch(err=>console.warn('SW registration failed',err));
+      navigator.serviceWorker.register('./sw.js',{scope:'./',updateViaCache:'none'}).then(reg=>{reg.update(); if(reg.waiting) reg.waiting.postMessage({type:'SKIP_WAITING'});}).catch(err=>console.warn('SW registration failed',err));
     });
   }
 }
