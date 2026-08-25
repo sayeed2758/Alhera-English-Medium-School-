@@ -1,4 +1,4 @@
-const CACHE_NAME = 'alhera-school-result-manager-v1';
+const CACHE_NAME = 'alhera-school-result-manager-v2';
 const APP_SHELL = [
   './',
   './index.html',
@@ -33,7 +33,7 @@ self.addEventListener('fetch', event => {
 
   const url = new URL(event.request.url);
   const isAppShell = url.origin === self.location.origin &&
-    (url.pathname.endsWith('/index.html') || url.pathname.endsWith('/app.js') || url.pathname.endsWith('/style.css'));
+    (url.pathname.endsWith('/index.html') || url.pathname.endsWith('/app.js') || url.pathname.endsWith('/assets/style.css') || url.pathname.endsWith('/manifest.webmanifest') || url.pathname.endsWith('/sw.js'));
 
   if (!isAppShell) {
     event.respondWith(
