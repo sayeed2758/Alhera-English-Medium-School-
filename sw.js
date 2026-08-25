@@ -1,3 +1,4 @@
+self.addEventListener('message', event => { if (event.data?.type === 'SKIP_WAITING') self.skipWaiting(); });
 const CACHE_NAME = 'alhera-school-result-manager-v2';
 const APP_SHELL = [
   './',
@@ -33,7 +34,7 @@ self.addEventListener('fetch', event => {
 
   const url = new URL(event.request.url);
   const isAppShell = url.origin === self.location.origin &&
-    (url.pathname.endsWith('/index.html') || url.pathname.endsWith('/app.js') || url.pathname.endsWith('/assets/style.css') || url.pathname.endsWith('/manifest.webmanifest') || url.pathname.endsWith('/sw.js'));
+    (url.pathname.endsWith('/index.html') || url.pathname.endsWith('/app.js') || url.pathname.endsWith('/style.css'));
 
   if (!isAppShell) {
     event.respondWith(
